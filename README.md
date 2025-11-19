@@ -1,14 +1,14 @@
 # ESP32-S3 Docker ESP-IDF Environment
 
-Dự án này cung cấp một môi trường phát triển ESP32-S3 được đóng gói bằng Docker dựa trên ESP-IDF. Mọi công cụ, chuỗi biên dịch và phụ thuộc đều nằm trong container giúp bạn có thể xây dựng firmware ổn định trên mọi máy.
+This project provides a Dockerized ESP32-S3 development environment based on the ESP-IDF. All tools, toolchains, and dependencies are contained within the container, allowing you to build stable firmware on any machine.
 
-## Cấu trúc
+## Structure
 
 ```
 .
-├── Dockerfile              # Định nghĩa image ESP-IDF
-├── docker-compose.yml      # Cấu hình dịch vụ phát triển
-└── firmware                # Mã nguồn ESP-IDF mẫu
+├── Dockerfile              # Defines the ESP-IDF image
+├── docker-compose.yml      # Configures the development service
+└── firmware                # Sample ESP-IDF source code
     ├── CMakeLists.txt
     ├── sdkconfig.defaults
     └── main
@@ -16,29 +16,29 @@ Dự án này cung cấp một môi trường phát triển ESP32-S3 được đ
         └── main.c
 ```
 
-## Yêu cầu
+## Prerequisites
 - Docker
 - Docker Compose v2
-- Quyền truy cập thiết bị `/dev/ttyUSB0` (hoặc cập nhật lại trong `docker-compose.yml`).
+- Access to the `/dev/ttyUSB0` device (or update it in `docker-compose.yml`).
 
-## Cách sử dụng
+## How to Use
 
-1. **Build image**
+1. **Build the image**
    ```bash
    docker compose build
    ```
-2. **Mở shell trong container**
+2. **Open a shell in the container**
    ```bash
    docker compose run --rm esp32-dev bash
    ```
-3. **Biên dịch firmware** (bên trong container)
+3. **Build the firmware** (inside the container)
    ```bash
    idf.py set-target esp32s3
    idf.py build
    ```
-4. **Flash và monitor** (kết nối bo mạch ở `/dev/ttyUSB0`)
+4. **Flash and monitor** (with the board connected at `/dev/ttyUSB0`)
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
    ```
 
-Firmware mẫu (`firmware/main/main.c`) sẽ in thông tin chip và thông báo định kỳ để đảm bảo ESP-IDF hoạt động đúng trong container.
+The sample firmware (`firmware/main/main.c`) will print chip information and a periodic message to ensure that the ESP-IDF is running correctly inside the container.
