@@ -1,0 +1,33 @@
+menu "ST7735 Configuration"
+
+    config SPI_SCLK_GPIO
+        int "SPI Clock GPIO"
+        default 18
+        help
+            GPIO pin number for SPI Clock (SCLK).
+
+    config SPI_MOSI_GPIO
+        int "SPI MOSI GPIO"
+        default 23
+        help
+            GPIO pin number for SPI Master Out Slave In (MOSI).
+
+    config ST7735_DC_GPIO
+        int "ST7735 DC GPIO"
+        default 2
+        help
+            GPIO pin number for ST7735 Data/Command (DC) pin.
+
+    config ST7735_RST_GPIO
+        int "ST7735 Reset GPIO"
+        default 4
+        help
+            GPIO pin number for ST7735 Reset (RST) pin.
+
+    config ST7735_BLK_GPIO
+        int "ST7735 Backlight GPIO"
+        default 15
+        help
+            GPIO pin number for ST7735 Backlight (BLK) pin.
+
+endmenu
